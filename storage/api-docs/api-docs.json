@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Random K9s",
+        "description": "<h3>API-integration</h3>\n<p>This API documentation includes the results for the particular user who are within following criteria:</p>\n<ul>\n <li>Numberphiles who are prefer to see the facts with numbers</li>\n <li>Other group of people who don't need to see the facts with numbers</li>\n <li>The rest users who don't matter whether the facts include numbers or not</li>\n</ul>\n</div>\n",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/random-fact": {
+            "get": {
+                "tags": [
+                    "Random Fact"
+                ],
+                "summary": "Get a random fact according to the user type",
+                "description": "Returns a fact according to the user type as numberphile or non-numberphile",
+                "operationId": "getRandomFact",
+                "parameters": [
+                    {
+                        "name": "user_type",
+                        "in": "query",
+                        "description": "User type as numberphile or non-numberphile",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "numberphile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "Status",
+                                            "type": "boolean",
+                                            "example": "Success"
+                                        },
+                                        "message": {
+                                            "description": "Successfully retrieved datax",
+                                            "type": "string",
+                                            "example": "Successfully retrieved data"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "A dog’s heart beats up to 120 times per minute, or 50 faster than the average human heartbeat of 80 times per minute"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "Status",
+                                            "type": "boolean",
+                                            "example": "Error"
+                                        },
+                                        "message": {
+                                            "description": "No matching record found!",
+                                            "type": "string",
+                                            "example": "No matching record found!"
+                                        },
+                                        "data": {
+                                            "description": null,
+                                            "type": "string",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Random Fact"
+        }
+    ]
+}
